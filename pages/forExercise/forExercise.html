@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关于数字3的游戏</title>
+</head>
+<body>
+    <script>
+        var maxNum = 100;
+        for (var i = 1; i <= maxNum; i++) {
+            if((i % 3) === 0 || ((i -3) % 10) === 0 || parseInt(i/10) === 3){
+                console.log('PA');
+            }else {
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+</html>
