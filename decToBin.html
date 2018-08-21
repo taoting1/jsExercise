@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+</head>
+<body>
+<input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+<input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+<button id="trans-btn">转化为二进制</button>
+<p id="result">运算结果</p>
+<script>
+
+    /**
+     * 十进制数转换为二进制
+     * return 存储二进制位数数组
+     * */
+    function dec2bin(decNumber) {
+        // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+        decNumber = Number(decNumber);
+        if (decNumber < 0) {
+            alert('输入值必须为非负整数');
+            return;
+        }
+        var resArr = [];
+        do {
+            debugger;
+            resArr.push(decNumber % 2);
+            decNumber = parseInt(decNumber / 2);
+        }while ((decNumber != 0))
+        return resArr.reverse();
+    }
+
+    /**
+     * 补齐二进制数
+     *@param binLen 二进制数数组
+     * @param polishLen 补齐后的长度
+     * return 补齐后的二进制数位数数组
+      */
+    function polishing(binArr, polishLen) {
+        var binLen = binArr.length, len = polishLen - binLen;
+        if ( len < 0) {
+            console.error('位数有错');
+            return binArr;
+        }
+        for(var i = 0; i < len; i++) {
+            binArr.unshift(0);
+        }
+        return binArr;
+    }
+
+    // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+    // Some coding
+    document.getElementById('trans-btn').onclick = function () {
+        var num = document.getElementById('dec-number').value;
+        var plen = document.getElementById('bin-bit').value;
+        var arr = dec2bin(num);
+        var polishArr = polishing(arr, plen);
+        document.getElementById('result').innerHTML = '运算结果' + polishArr.join('');
+    }
+</script>
+</body>
+</html>
